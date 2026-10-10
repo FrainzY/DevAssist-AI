@@ -1,0 +1,25 @@
+{
+  "name": "devassist-ai",
+  "version": "1.0.0",
+  "description": "Developer Copilot AI untuk belajar, debugging, roadmap, dan latihan menggunakan Gemini.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google/genai": "^1.11.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mammoth": "^1.9.0",
+    "multer": "^2.0.1",
+    "pdf-parse": "^1.1.1",
+    "prettier": "^3.9.9"
+  }
+}

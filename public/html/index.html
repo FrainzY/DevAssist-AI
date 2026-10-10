@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#171126" />
+    <meta name="description" content="devAsisst AI — teman belajar coding dan debugging." />
+    <title>devAsisst AI — Developer Copilot</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+  </head>
+
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="/" aria-label="devAsisst AI beranda">
+          <span class="brand-mark"><span>da</span><i>✦</i></span>
+          <span class="brand-copy">
+            <strong>devAsisst <em>AI</em></strong>
+            <small>YOUR DEVELOPER COPILOT</small>
+          </span>
+        </a>
+
+        <button class="new-chat" id="new-chat"><span>＋</span> Percakapan baru</button>
+
+        <div class="side-label">WORKSPACE</div>
+
+        <nav class="side-nav" aria-label="Workspace">
+          <button class="nav-item active" data-mode="chat"><span>◈</span> Chat & Debugging</button>
+          <button class="nav-item" data-mode="roadmap"><span>⌁</span> Susun roadmap</button>
+          <button class="nav-item" data-mode="practice"><span>▣</span> Latihan coding</button>
+          <button class="nav-item" data-mode="review"><span>✓</span> Nilai jawaban</button>
+        </nav>
+
+        <div class="side-label section-label">RUANG BELAJAR</div>
+
+        <button class="nav-item" id="open-notes">
+          <span>▤</span>
+          Catatan solusi
+          <span class="nav-count" id="notes-count">0</span>
+        </button>
+
+        <div class="sidebar-bottom">
+          <div class="profile-card">
+            <div class="avatar">da</div>
+            <div class="profile-copy">
+              <strong>Developer mode</strong>
+              <span>Belajar selangkah demi selangkah</span>
+            </div>
+            <span class="online-dot"></span>
+          </div>
+
+          <div class="privacy-note">
+            <span>✳</span>
+            Konteks chat dikirim bersama pesan terbaru agar jawaban tetap nyambung.
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Buka menu">
+            ☰
+          </button>
+
+          <div class="breadcrumbs">
+            <span>Workspace</span>
+            <b>/</b>
+            <strong id="mode-title">Chat & Debugging</strong>
+          </div>
+
+          <div class="top-actions">
+            <span class="model-pill"><i></i> Gemini</span>
+            <button
+              class="icon-button"
+              id="clear-chat"
+              title="Bersihkan percakapan"
+              aria-label="Bersihkan percakapan"
+            >
+              ⟲
+            </button>
+          </div>
+        </header>
+
+        <section class="chat-layout">
+          <div class="welcome" id="welcome">
+            <div class="welcome-eyebrow">
+              <span class="sparkle">✦</span>
+              YOUR PERSONAL CODING COMPANION
+            </div>
+
+            <h1>Build skills.<br /><span>Break problems.</span> Solve them.</h1>
+
+            <p>
+              Teman ngoding untuk memahami konsep, menemukan akar error, dan berkembang dengan
+              rencana belajar yang jelas.
+            </p>
+
+            <div class="suggestion-grid">
+              <button
+                class="suggestion-card"
+                data-prompt="Jelaskan error ini secara bertahap. Tanyakan detail yang masih kurang sebelum menyimpulkan penyebabnya."
+              >
+                <span class="suggestion-icon pink">⌁</span>
+                <strong>Debug kode</strong>
+                <small>Temukan akar masalah, bukan sekadar tambal error.</small>
+                <b>↗</b>
+              </button>
+
+              <button
+                class="suggestion-card"
+                data-mode="roadmap"
+                data-prompt="Bantu saya menyusun roadmap belajar backend developer yang bertahap, dengan tujuan dan proyek mini. Mulai dengan menanyakan level dan waktu belajar saya."
+              >
+                <span class="suggestion-icon violet">⌘</span>
+                <strong>Rancang roadmap</strong>
+                <small>Ubah target belajar jadi langkah yang terukur.</small>
+                <b>↗</b>
+              </button>
+
+              <button
+                class="suggestion-card"
+                data-mode="practice"
+                data-prompt="Buatkan latihan coding yang disesuaikan dengan kemampuan saya. Mulai dengan menanyakan topik dan level saya; berikan petunjuk dahulu, bukan solusi penuh."
+              >
+                <span class="suggestion-icon blue">▣</span>
+                <strong>Latihan coding</strong>
+                <small>Asah pemahaman lewat tantangan praktis.</small>
+                <b>↗</b>
+              </button>
+
+              <button
+                class="suggestion-card"
+                data-prompt="Jelaskan potongan kode yang saya kirim: tujuan, alur, bagian penting, dan potensi masalahnya. Jika belum ada kode, minta saya mengirimkannya."
+              >
+                <span class="suggestion-icon orange">{ }</span>
+                <strong>Bedah kode</strong>
+                <small>Pahami apa yang terjadi dan mengapa.</small>
+                <b>↗</b>
+              </button>
+            </div>
+
+            <div class="welcome-tip">
+              <span>✦</span>
+              <span>
+                <strong>Belajar dengan konteks.</strong>
+                Chat ini menggunakan riwayat percakapan aktif sebagai konteks. Mulai chat baru untuk
+                berpindah topik.
+              </span>
+            </div>
+          </div>
+
+          <div class="messages" id="messages" aria-live="polite" hidden></div>
+
+          <div class="composer-wrap">
+            <form class="composer" id="chat-form">
+              <textarea
+                id="message-input"
+                rows="1"
+                placeholder="Tanyakan sesuatu tentang kode, error, atau konsep pemrograman..."
+                aria-label="Pesan untuk devAsisst AI"
+                required
+              ></textarea>
+
+              <div class="composer-toolbar">
+                <div class="composer-tools">
+                  <button
+                    type="button"
+                    class="tool-button"
+                    id="save-last"
+                    title="Simpan jawaban terakhir ke catatan"
+                  >
+                    ▤ Simpan solusi
+                  </button>
+                </div>
+
+                <div class="send-area">
+                  <span class="enter-hint"> Enter untuk kirim · Shift+Enter baris baru </span>
+                  <button
+                    class="send-button"
+                    id="send-button"
+                    type="submit"
+                    aria-label="Kirim pesan"
+                  >
+                    <span>↑</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <p class="disclaimer">
+              AI bisa keliru. Verifikasi solusi sebelum menerapkannya ke proyek.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-head">
+          <div>
+            <span class="context-kicker" id="modal-kicker">YOUR WORKSPACE</span>
+            <h2 id="modal-title">Catatan solusi</h2>
+          </div>
+          <button class="icon-button" id="close-modal" aria-label="Tutup">×</button>
+        </div>
+        <div id="modal-content"></div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <script type="module" src="/assets/js/app.js"></script>
+  </body>
+</html>
